@@ -1,149 +1,607 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medio AI | Doktorları Güçlendiren Yapay Zeka</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="MEDIO AI — Tıbbi raporları anlamanıza yardımcı olan yapay zekâ destekli sağlık teknolojisi platformu.">
+  <title>MEDIO AI — Medical Intelligence</title>
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: #0a1628;
-            color: #ffffff;
-            line-height: 1.6;
-        }
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --blue: #06c;
+      --blue-light: #eaf3ff;
+      --line: #d2d2d7;
+      --radius: 22px;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        header {
-            padding: 25px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .logo img {
-            height: 90px;
-            width: auto;
-        }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .hero {
-            text-align: center;
-            padding: 100px 0 80px;
-        }
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        .hero h1 span {
-            color: #00d4c8;
-        }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245,245,247,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: #a0b3c8;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-        .badge {
-            display: inline-block;
-            background: rgba(0, 212, 200, 0.15);
-            color: #00d4c8;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            border: 1px solid rgba(0, 212, 200, 0.3);
-        }
+    .brand {
+      color: var(--text);
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: -1px;
+    }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 60px 0;
-        }
+    .brand span {
+      color: var(--blue);
+    }
 
-        .feature-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 35px 28px;
-            transition: 0.3s;
-        }
+    .nav-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-        .feature-card:hover {
-            border-color: rgba(0, 212, 200, 0.4);
-            transform: translateY(-5px);
-        }
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 0 24px;
+    }
 
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #00d4c8;
-        }
+    .hero {
+      text-align: center;
+      padding: 82px 0 55px;
+    }
 
-        .feature-card p {
-            color: #a0b3c8;
-            font-size: 1rem;
-        }
+    .eyebrow {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 700;
+    }
 
-        .vision {
-            text-align: center;
-            padding: 80px 0;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
+    h1 {
+      font-size: clamp(43px, 8vw, 76px);
+      letter-spacing: -4px;
+      line-height: 1.05;
+      margin: 18px 0;
+    }
 
-        .vision h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(17px, 3vw, 22px);
+      max-width: 650px;
+      margin: auto;
+    }
 
-        .vision p {
-            color: #a0b3c8;
-            max-width: 750px;
-            margin: 0 auto;
-            font-size: 1.15rem;
-        }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255,255,255,.7);
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: #6b7c93;
-            font-size: 0.95rem;
-        }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f0a000;
+    }
 
-        footer strong {
-            color: #00d4c8;
-        }
-    </style>
+    section {
+      margin: 22px 0;
+    }
+
+    .panel {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: clamp(22px, 5vw, 38px);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 25px;
+      letter-spacing: -1px;
+      margin: 0 0 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 190px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 17px;
+      font: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #fbfbfd;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,102,204,.12);
+    }
+
+    textarea::placeholder {
+      color: #99999f;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    button,
+    .file-label {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 24px;
+      padding: 10px 17px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover,
+    .file-label:hover {
+      border-color: var(--blue);
+    }
+
+    .primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .primary:hover {
+      background: #005bb5;
+      color: white;
+    }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-name {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--blue-light);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .notice {
+      border-left: 3px solid var(--blue);
+      padding: 5px 0 5px 15px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .feature {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 23px;
+    }
+
+    .feature-number {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      margin: 10px 0 6px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .chat-message {
+      padding: 13px 16px;
+      border-radius: 16px;
+      background: #f5f5f7;
+      margin: 12px 0;
+      font-size: 14px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .chat-message.user {
+      background: var(--blue-light);
+    }
+
+    footer {
+      max-width: 1050px;
+      margin: 55px auto 0;
+      padding: 25px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 65px 0 40px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        padding: 12px 18px;
+      }
+
+      main {
+        padding: 0 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="medio.png" alt="Medio AI Logo">
-            </div>
-        </div>
-    </header>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      MEDIO<span> AI</span>
+    </a>
+    <span class="nav-label">Medical Intelligence</span>
+  </div>
+</nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="badge">Beta Versiyon • Geliştirme Aşamasında</div>
-            <h1>Doktorları Güçlendiren<br><span>Yapay Zeka</span></h1>
-            <p>
-                Medio AI; medikal 
+<main>
+
+  <header class="hero">
+    <div class="eyebrow">MEDI LABORATORYS · HEALTH TECHNOLOGY</div>
+
+    <h1>MEDIO AI</h1>
+
+    <p>
+      Tıbbi raporları daha anlaşılır hâle getirmek
+      için geliştirilen yapay zekâ destekli araştırma platformu.
+    </p>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>Geliştirme aşamasında</span>
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2>Rapor okuyucu</h2>
+
+    <p class="section-description">
+      Tıbbi raporunuzun metnini aşağıdaki alana ekleyebilirsiniz.
+      Sistem bağlantısı hazır olduğunda açıklama isteyebilirsiniz.
+    </p>
+
+    <textarea
+      id="report"
+      placeholder="Tıbbi rapor metnini buraya yapıştırın..."
+    ></textarea>
+
+    <div class="actions">
+      <label class="file-label" for="file">
+        Dosya seç
+      </label>
+
+      <input
+        type="file"
+        id="file"
+        accept=".txt,.md"
+      >
+
+      <span class="file-name" id="fileName">
+        Henüz dosya seçilmedi
+      </span>
+
+      <button class="primary" id="analyze">
+        Raporu açıkla
+      </button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </section>
+
+  <section class="panel">
+    <h2>MEDIO AI Assistant</h2>
+
+    <p class="section-description">
+      Tıbbi terimler ve rapor ifadeleri hakkında
+      genel bilgi almak için soru yazabilirsiniz.
+    </p>
+
+    <div id="messages">
+      <div class="chat-message">
+        MEDIO AI sohbet arayüzü hazır. Yapay zekâ bağlantısı
+        yapılandırıldığında burada yanıtlar görüntülenecek.
+      </div>
+    </div>
+
+    <textarea
+      id="question"
+      style="min-height:100px"
+      placeholder="Sorunuzu yazın..."
+    ></textarea>
+
+    <div class="actions">
+      <button class="primary" id="send">
+        Gönder
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid">
+      <div class="feature">
+        <div class="feature-number">01</div>
+        <h3>Rapor açıklama</h3>
+        <p>
+          Tıbbi raporlardaki terimleri daha anlaşılır
+          bir dille açıklamaya yardımcı olma.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-number">02</div>
+        <h3>Türkçe yapay zekâ</h3>
+        <p>
+          Sağlık alanındaki metinleri Türkçe
+          olarak anlamlandırmaya yönelik çalışma.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-number">03</div>
+        <h3>Gelişen teknoloji</h3>
+        <p>
+          Tıbbi bilgiye erişimi kolaylaştırmayı
+          amaçlayan teknoloji araştırmaları.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Bilimsel sorumluluk</h2>
+
+    <p class="notice">
+      MEDIO AI bir sağlık profesyonelinin yerini almaz.
+      Tanı koymaz, tedavi önermez ve acil durum değerlendirmesi
+      yapmaz. Sunulan bilgiler genel bilgilendirme amaçlıdır.
+      Raporlarınızı mutlaka sağlık uzmanınızla değerlendirin.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-row">
+    <span>© 2026 MEDI LABORATORYS</span>
+    <a href="mailto:medi.laboratorys@gmail.com">
+      medi.laboratorys@gmail.com
+    </a>
+  </div>
+
+  <p style="margin-top:14px">
+    MEDIO AI · Medical Intelligence
+  </p>
+</footer>
+
+<script>
+  /*
+    BACKEND CONFIGURATION
+
+    GitHub Pages yalnızca statik dosya barındırır.
+    Gerçek AI kullanımı için backend adresi gerekir.
+
+    Örnek:
+    const API_BASE_URL = "https://your-backend.example.com";
+
+    Backend hazır olana kadar boş bırakın.
+  */
+
+  const API_BASE_URL = "";
+
+  const report = document.getElementById("report");
+  const result = document.getElementById("result");
+  const file = document.getElementById("file");
+  const fileName = document.getElementById("fileName");
+
+  file.addEventListener("change", async () => {
+    const selected = file.files[0];
+
+    if (!selected) return;
+
+    fileName.textContent = selected.name;
+
+    try {
+      const text = await selected.text();
+      report.value = text;
+    } catch {
+      fileName.textContent = "Dosya okunamadı";
+    }
+  });
+
+  async function sendToAI(message) {
+    if (!API_BASE_URL) {
+      throw new Error(
+        "AI bağlantısı henüz yapılandırılmadı. Backend bağlantısı bekleniyor."
+      );
+    }
+
+    const response = await fetch(
+      `${API_BASE_URL}/api/chat`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Sunucu isteği tamamlayamadı.");
+    }
+
+    return await response.json();
+  }
+
+  document.getElementById("analyze").addEventListener("click", async () => {
+    const text = report.value.trim();
+
+    if (!text) {
+      result.textContent = "Lütfen önce rapor metnini ekleyin.";
+      result.classList.add("visible");
+      return;
+    }
+
+    result.textContent = "Rapor gönderilmeye hazırlanıyor...";
+    result.classList.add("visible");
+
+    try {
+      const data = await sendToAI(
+        "Aşağıdaki tıbbi rapordaki terimleri genel bilgilendirme amacıyla açıkla. Tanı koyma veya tedavi önerme:\n\n" + text
+      );
+
+      result.textContent = data.reply || "Sunucudan yanıt alınamadı.";
+    } catch (error) {
+      result.textContent = error.message;
+    }
+  });
+
+  document.getElementById("send").addEventListener("click", async () => {
+    const question = document.getElementById("question");
+    const messages = document.getElementById("messages");
+    const text = question.value.trim();
+
+    if (!text) return;
+
+    const userMessage = document.createElement("div");
+    userMessage.className = "chat-message user";
+    userMessage.textContent = text;
+    messages.appendChild(userMessage);
+
+    question.value = "";
+
+    const reply = document.createElement("div");
+    reply.className = "chat-message";
+    reply.textContent = "Yanıt bekleniyor...";
+    messages.appendChild(reply);
+
+    try {
+      const data = await sendToAI(text);
+      reply.textContent = data.reply || "Yanıt alınamadı.";
+    } catch (error) {
+      reply.textContent = error.message;
+    }
+  });
+</script>
+
+</body>
+</html>
